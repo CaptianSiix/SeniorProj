@@ -34,29 +34,26 @@
     <li class="nav-item">
       <a class='nav-link' href="https://paizo.com/">Paizo's Website</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="posts.php">Post</a>
-    </li>
+
           <?php
             if (isset($_SESSION["useruid"])) {
               echo "<li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>";
             }
-            elseif (isset($_SESSION["usersAdmin"])){
-              echo "<li class='nav-item'><a class='nav-link' href='posts.php'>Post</a></li>";
-             }
+           // elseif (isset($_SESSION["usersAdmin"])){
+           //   echo "<li class='nav-item'><a class='nav-link' href='#'>Something else</a></li>";
+          //   }
               # code..
             else {
               echo "<li class='nav-item'><a class='nav-link' href='signup.php'>Sign up</a></li>";
               echo "<li class='nav-item'><a class='nav-link' href='login.php'>Log in</a></li>";
             }
-
           ?>
-          <?php
-            if (isset($_SESSION["usersAdmin"])){
-              echo "<li class='nav-item'><a class='nav-link' href='posts.php'>Post</a></li>";
-             }
-             else
-          ?>
+                <!--CHECKS TO SEE IF THE USER CAN POST-->
+                <?php if(isset($_SESSION['is_admin']) && !!$_SESSION['is_admin']):?>
+                <li class='nav-item'><a class='nav-link' href='posts.php'>Post</a></li>
+                <?php else:?>
+                <li class='nav-item'><a class='nav-link' href='login.php'>Login as Admin to post</a></li>
+                <?php endif;?>
         </ul>
       </div>
     </nav>
@@ -71,9 +68,3 @@
     <h3> 1</h3>
     <div class="col"></div>
   </div>
-  <?php
-    if ('is_admin' === 'true'){
-      echo "<h3> 100000000000</h3>";
-
-    }
-  ?>

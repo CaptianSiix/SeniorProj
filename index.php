@@ -11,6 +11,26 @@
   ?>
   <!--Visualization for posts-->
 
+<?php
+  //Posts coming to fruition
+  require_once "includes\dbh.inc.php";
+
+  $query = "SELECT `usersID`, `usersName`, `usersEmail`, `usersUid`, `usersAdmin` FROM `users`";
+  $result = mysqli_query($conn, $query);
+
+  if($result) {
+      while($row = mysqli_fetch_assoc($result)) {
+
+          echo '<div class="row ">
+          <div class="container mt-3 float-left ">
+          <img src="images/hazmat cat pfp.png" alt="Siix" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h4>' . $row["usersUid"] . '<small><i> Posted on ' . $row['usersID'] . '</i></small></h4>
+            <p>' . $row['usersEmail'] . '</p>';
+      }
+  }
+  ?>
+
   <div class="row ">
   <div class="container mt-3 float-left ">
   <img src="images/hazmat cat pfp.png" alt="Siix" class="mr-3 mt-3 rounded-circle" style="width:60px;">
