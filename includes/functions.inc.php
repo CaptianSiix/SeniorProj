@@ -142,34 +142,21 @@ function loginUser($conn, $username, $pwd) {
 }
 
 
-// Posts
-function postPost($conn, $title, $body) {
-	$uidExists = uidExists($conn, $username);
-
-	if (! isAdmin()) {
-		header('Location:../index.php?error=admin');
-		exit();
-	}
-
-	if ($uidExists === false) {
-		header("location: ../login.php?error=wronglogin");
-		exit();
-	}
-
-}
-
-// Insert new user into database
-function createPost($conn, $title, $body) {
-	$postssql = "INSERT INTO posts (postsTitle, postsBody) VALUES (?, ?);";
+	// Insert new user into database
+function createPost($conn, $title, $body, $userid) {
+	$postssql = "INSERT INTO posts (postsTitle, postsBody, usersId) VALUES (?, ?, ?);";
   
 	  $stmt = mysqli_stmt_init($conn);
-	  if (!mysqli_stmt_prepare($stmt, $sql)) {
+	  if (!mysqli_stmt_prepare($stmt, $postssql)) {
 		   header("location: ../signup.php?error=stmtfailed");
 		  exit();
 	  }
-	  mysqli_stmt_bind_param($stmt, "ssss", $title, $body);
-	  mysqli_stmt_execute($stmt);
-	  mysqli_stmt_close($stmt);
+	  var_dump($_SESSION);
+
+	 mysqli_stmt_bind_param($stmt, "ssi", $title, $body, $userid);
+	 mysqli_stmt_execute($stmt);
+	 mysqli_stmt_close($stmt);
 	  mysqli_close($conn);
-	  header("location: ../signup.php?error=none");
+	  header("location: ../#");	
 	}
+

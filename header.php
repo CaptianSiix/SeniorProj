@@ -1,8 +1,10 @@
 <?php
+//Gets DB started
   session_start();
-
+//Gets functions needed to progress
   include_once 'includes/functions.inc.php';
 ?>
+    <!--CSS and other things. Need this page on every single page in order for them to work-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,29 +22,23 @@
 
 
 
-    <!--A quick navigation-->
+    <!--Nav bar-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
   <a class="navbar-brand" href="index.php">
     <img src="images/zrukbat.png" alt="logo" style="width:60px;">
   </a>
     <li class="nav-item">
-      <a class="nav-link" href="index.php">Media</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">New</a>
+      <a class="nav-link" href="index.php">New</a>
     </li>
     <li class="nav-item">
       <a class='nav-link' href="https://paizo.com/">Paizo's Website</a>
     </li>
-
+          <!--If the user is logged in it shows this -->
           <?php
             if (isset($_SESSION["useruid"])) {
               echo "<li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>";
             }
-           // elseif (isset($_SESSION["usersAdmin"])){
-           //   echo "<li class='nav-item'><a class='nav-link' href='#'>Something else</a></li>";
-          //   }
-              # code..
+              // if user is not logged in it shows this
             else {
               echo "<li class='nav-item'><a class='nav-link' href='signup.php'>Sign up</a></li>";
               echo "<li class='nav-item'><a class='nav-link' href='login.php'>Log in</a></li>";
@@ -52,7 +48,6 @@
                 <?php if(isset($_SESSION['is_admin']) && !!$_SESSION['is_admin']):?>
                 <li class='nav-item'><a class='nav-link' href='posts.php'>Post</a></li>
                 <?php else:?>
-                <li class='nav-item'><a class='nav-link' href='login.php'>Login as Admin to post</a></li>
                 <?php endif;?>
         </ul>
       </div>

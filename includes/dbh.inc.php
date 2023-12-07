@@ -1,5 +1,5 @@
 <?php
-
+// Gets all the information from teh server may need to change it locally or live
 $servername = "localhost";
 $dBUsername = "root";
 $dBPassword = "";
